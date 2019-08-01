@@ -4,11 +4,13 @@
   "description": "for_centinela",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
-    "build": "webpack",
+    "webpack": "webpack",
     "react-dev": "webpack -w",
-    "test": "jest",
-    "seed": "node database/seed/seed.js"
+    "start": "nodemon server/server.js",
+    "scss-dev": "node-sass --watch client/src/styles -o client/dist/styles/ ",
+    "scss": "node-sass client/src/styles -o client/dist/styles/",
+    "test": "jest --verbose --passWithNoTests --detectOpenHandles",
+    "seed": "node database/seed/seedFunction.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
     "css-loader": "^3.1.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",

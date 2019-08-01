@@ -1,0 +1,9 @@
+//Jest and webpack are currently using differente version due to updating to correct dependencies issues
+{
+    "presets": ["@babel/preset-env", "@babel/react"],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-runtime"
+    ]
+  }
+  
