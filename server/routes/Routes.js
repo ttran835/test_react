@@ -1,8 +1,8 @@
 const Routes = require('express').Router();
 const { mockDataController } = require('../controller/mockDataController');
 
-Routes.route('/')
-  .get(mockDataController.get)
-  .post(mockDataController.post);
+Routes.route('/home').get(mockDataController.get);
+
+Routes.route('/fakeDataGen').post(mockDataController.post);
 
 module.exports = Routes;
