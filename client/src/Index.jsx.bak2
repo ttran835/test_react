@@ -1,0 +1,58 @@
+/* Example one of how to set up redux => very general and simple set up */
+
+import React from 'react';
+import { render } from 'react-dom';
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+// Action => It is a function that simply returns an {};
+import { Provider } from 'react-redux';
+
+const increment = () => {
+  return {
+    type: 'INCREMENT',
+  };
+};
+
+const decrement = () => {
+  return {
+    type: 'DECREMENT',
+  };
+};
+
+// Reducer => Check what action we did in order to modify the state in the store.
+// This will take the action and change it
+const counter = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+
+    case 'DECREMENT':
+      return state - 1;
+  }
+};
+
+// React Store
+// import configureStore from './store';
+
+let store = createStore(counter);
+// Display the action
+store.subscribe(() => console.log(store.getState()));
+
+// Dispatch => The Dispatcher sends the info from action to the reducer and reducer changes the store.
+store.dispatch(increment());
+store.dispatch(increment());
+store.dispatch(increment());
+store.dispatch(decrement());
+store.dispatch(decrement());
+
+import App from './components/App';
+// import styles from '../dist/styles/main.css';
+
+// render(
+//   <Provider store={configureStore()}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('app')
+// );
