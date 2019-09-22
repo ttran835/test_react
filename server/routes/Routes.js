@@ -1,8 +1,10 @@
 const Routes = require('express').Router();
-const { mockDataController } = require('../controller/mockDataController');
+const { UsersController } = require('../controller/usersController');
 
-Routes.route('/home').get(mockDataController.get);
+Routes.route('/fakeDataGen').post(UsersController.post);
 
-Routes.route('/fakeDataGen').post(mockDataController.post);
+Routes.route('/login').get(UsersController.get);
+
+Routes.route('/').get(UsersController.get);
 
 module.exports = Routes;

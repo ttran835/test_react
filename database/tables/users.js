@@ -1,8 +1,8 @@
 const { db } = require('../index');
 const Sequelize = require('sequelize');
 
-const mockData = db.define(
-  'mockdata',
+const Users = db.define(
+  'users',
   {
     _id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     first: { type: Sequelize.STRING },
@@ -11,15 +11,16 @@ const mockData = db.define(
     department: { type: Sequelize.STRING },
     company: { type: Sequelize.STRING },
     expertise: { type: Sequelize.STRING },
+    username: { type: Sequelize.STRING },
+    password: { type: Sequelize.STRING },
   },
   {
     timeStamp: true,
   }
 );
 
-mockData
-  .sync()
+Users.sync()
   .then(() => console.log('Synced with DB'))
   .catch(err => console.error(err));
 
-module.exports = { mockData };
+module.exports = { Users };

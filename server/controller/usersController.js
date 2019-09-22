@@ -1,15 +1,17 @@
 require('dotenv').config();
 const Axios = require('axios');
 const express = require('express');
-const { mockData } = require('../../database/tables/mockData');
+const { Users } = require('../../database/tables/users');
 
-/* Api calls here */
+/* 
+  Api calls here 
+ 
+*/
 
 const fakeEmployeeUrl = `https://${process.env.API_KEY}.mockapi.io/employee`;
-const mockDataController = {
+const UsersController = {
   get: (req, res) => {
-    mockData  
-      .findAll({})
+    Users.findAll({})
       .then(data => {
         res.status(200).send(data);
       })
@@ -21,21 +23,21 @@ const mockDataController = {
       .then(response => {
         const employees = response.data;
         employees.forEach(employee => {
-          mockData.create({
+          Users.create({
             first: employee.First,
             last: employee.Last,
             email: employee.Email,
             department: employee.Department,
             company: employee.Company,
             expertise: employee.Expertise,
+            username: employee.Username,
+            password: employee.Password,
           });
         });
-      })
-      .then(response => {
         res.status(201).send('Information saved to DB');
       })
       .catch(err => console.error(err));
   },
 };
 
-module.exports = { mockDataController };
+module.exports = { UsersController };
