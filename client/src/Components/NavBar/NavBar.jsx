@@ -2,21 +2,21 @@ import React from 'react';
 
 const NavBar = props => {
   return (
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav mr-auto">
-        <li className="nav-item active">
-          <a className="nav-link" href="#">
-            Home <span className="sr-only">(current)</span>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            Home <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
             Link
           </a>
         </li>
-        <li className="nav-item dropdown">
+        <li class="nav-item dropdown">
           <a
-            className="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -26,25 +26,21 @@ const NavBar = props => {
           >
             Dropdown
           </a>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="#">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">
               Action
             </a>
-            <a className="dropdown-item" href="#">
+            <a class="dropdown-item" href="#">
               Another action
             </a>
-            <div className="dropdown-divider" />
-            <a className="dropdown-item" href="#">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
               Something else here
             </a>
           </div>
         </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" href="#">
-            Disabled
-          </a>
-        </li>
       </ul>
+      <span class="navbar-text">Navbar text with an inline element</span>
     </div>
   );
 };
