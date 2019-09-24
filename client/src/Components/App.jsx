@@ -3,7 +3,6 @@ import Axios from 'axios';
 
 /* component */
 import NavBar from './NavBar/NavBar';
-import Hero from './Hero/Hero';
 import Employees from './Employees/Employees';
 import Search from './ManageEmployee/Search';
 import Login from './Login/Login';
@@ -65,7 +64,7 @@ export default class App extends Component {
         <div className="row justify-content-sm-center">
           <Login />
         </div>
-        <div className="row">
+        <div className="row d-none">
           <Search />
           <Employees employees={this.state.employees} />
         </div>

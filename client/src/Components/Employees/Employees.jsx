@@ -6,7 +6,7 @@ export default function Employees(props) {
   const employees = props.employees;
   console.log({ employees });
   return (
-    <div className="col-sm-12 text-color">
+    <div className="col-12 text-color">
       <h3 className="uppercase">List of Employees</h3>
       <div className="row">
         {employees.map((employee, i) => (

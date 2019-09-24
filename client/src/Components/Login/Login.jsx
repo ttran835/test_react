@@ -19,13 +19,13 @@ export default class Login extends Component {
     });
   }
 
-  submitChange(e) {
+  submitChange(e) { 
     e.preventDefault();
   }
 
   render() {
     return (
-      <div className="col-sm-4 text-color">
+      <div className="col-4 text-color">
         <form>
           <div className="form-group">
             <label htmlFor="username">Username</label>

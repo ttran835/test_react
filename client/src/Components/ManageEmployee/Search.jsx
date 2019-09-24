@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = props => {
   return (
-    <div className="col-sm-12">
+    <div className="col-12">
       <input placeholder="search for employees" />
       <button>Search</button>
     </div>
