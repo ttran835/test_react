@@ -19,7 +19,7 @@ export default class Login extends Component {
     });
   }
 
-  submitChange(e) { 
+  submitChange(e) {
     e.preventDefault();
   }
 
@@ -50,11 +50,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button
-            onClick={this.submitChange}
-            type="submit"
-            className="btn btn-primary"
-          >
+          <button onClick={this.submitChange} type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>

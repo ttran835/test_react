@@ -5,7 +5,7 @@ import history from '../../../history/history';
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: process.env.OAUTHDEV_DOM,
-    clientID: 'TJyKPI6aRiRwgr6SxlT7ExW10NEHW4Vy',
+    clientID: process.env.OAUTH_CLIENT_ID,
     redirectUri:
       process.env.NODE_ENV === 'development'
         ? `http://localhost:${process.env.SERVER_PORT}/callback`

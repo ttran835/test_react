@@ -6,15 +6,15 @@ import NavBar from './NavBar/NavBar';
 import Employees from './Employees/Employees';
 import Search from './ManageEmployee/Search';
 import Login from './Login/Login';
-/* 
-  ToDo: 
+/*
+  ToDo:
     Implement Authentication:
     Implement CURD Application first
       Once CRUD application is done, move onto the next Item;
 
     Routes.route('/fakeDataGen').post(UsersController.post);
     Routes.route('/login').get(UsersController.get);
-    Routes.route('/').get(UsersController.get);  
+    Routes.route('/').get(UsersController.get);
 
 */
 export default class App extends Component {

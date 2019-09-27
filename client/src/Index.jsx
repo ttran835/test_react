@@ -1,7 +1,13 @@
+import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from './components/App';
+import App from './Components/App.jsx';
 // import styles from '../dist/styles/main.css';
 
-render(<App />, document.getElementById('app'));
+render(
+  <AppContainer>
+    <App />
+  </AppContainer>,
+  document.getElementById('app')
+);

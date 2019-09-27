@@ -1,7 +1,7 @@
-const { db } = require('../index');
 const Sequelize = require('sequelize');
+const { db } = require('../index');
 
-/***  Access Level ***/
+/***  Access Level  ***/
 /* Level 1: Employee */
 /* level 2: admin    */
 /* level 3: Execs    */
@@ -15,10 +15,10 @@ const UserLogins = db.define(
     email: { type: Sequelize.STRING },
     username: { type: Sequelize.STRING },
     password: { type: Sequelize.STRING },
-    credential: {type:  Sequelize.INTEGER },
+    credential: { type: Sequelize.INTEGER }
   },
   {
-    timeStamp: true,
+    timeStamp: true
   }
 );
 

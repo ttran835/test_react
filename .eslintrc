@@ -1,0 +1,42 @@
+{
+  "plugins": ["import", "prettier", "jsx-a11y", "react"],
+  "extends": ["airbnb-base", "plugin:import/errors", "plugin:import/warnings", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "no-console": "off",
+    "no-confusing-arrow": "off",
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "comma-style": "off",
+    "no-param-reassign": [
+      0,
+      {
+        "props": false
+      }
+    ],
+    "prefer-rest-params": 1,
+    "arrow-body-style": 0,
+    "prefer-template": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js"]
+      }
+    }
+  }
+}
