@@ -4,7 +4,7 @@ const { UserLoginsController } = require('../controller/userLoginController');
 
 Routes.route('/fakeDataGen').post(UsersController.post);
 
-Routes.route('/login').get(UserLoginsController.get);
+Routes.route('/login:user').get(UserLoginsController.get);
 
 Routes.route('/employees').get(UsersController.get);
 

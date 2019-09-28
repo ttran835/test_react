@@ -1,7 +1,6 @@
 /* For use login only */
 
 require('dotenv').config();
-const express = require('express');
 const { UserLogins } = require('../../database/tables/userLogins');
 
 const UserLoginsController = {

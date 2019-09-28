@@ -25,35 +25,37 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="col-4 text-color">
-        <form>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              className="form-control"
-              id="username"
-              aria-describedby="usernameHelp"
-              placeholder="Enter Username or Email"
-              onChange={this.handleChange}
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
+      <div className="row justify-content-sm-center">
+        <div className="col-4 text-color">
+          <form>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
+                className="form-control"
+                id="username"
+                aria-describedby="usernameHelp"
+                placeholder="Enter Username or Email"
+                onChange={this.handleChange}
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                We&apos;ll never share your email with anyone else.
             </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-            />
-          </div>
-          <button onClick={this.submitChange} type="submit" className="btn btn-primary">
-            Submit
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+            </div>
+            <button onClick={this.submitChange} type="submit" className="btn btn-primary">
+              Submit
           </button>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

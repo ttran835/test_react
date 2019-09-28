@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 require('dotenv').config();
 
 const CSSModuleLoader = {
@@ -34,9 +35,10 @@ const postCSSLoader = {
     ],
   },
 };
+
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './client/src/'),
+  entry: [path.resolve(__dirname, './client/src')],
   output: {
     path: path.resolve(__dirname, './client/dist'),
     filename: 'bundle.js',
@@ -82,7 +84,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env.HOSTNAME': JSON.stringify(process.env.USER),

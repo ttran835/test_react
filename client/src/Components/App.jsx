@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 /* component */
-import NavBar from './NavBar/NavBar';
-import Employees from './Employees/Employees';
-import Search from './ManageEmployee/Search';
-import Login from './Login/Login';
+import NavBar from './NavBar/NavBar.jsx';
+import Employees from './Employees/Employees.jsx';
+import Login from './Login/Login.jsx';
 /*
   ToDo:
     Implement Authentication:
@@ -17,58 +16,15 @@ import Login from './Login/Login';
     Routes.route('/').get(UsersController.get);
 
 */
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => (
+  <div className="container">
+    <Route path="/" component={NavBar} />
+    <Switch>
+      <Route path="/login" component={Login} />
+      {/* <Employees employees={this.state.employees} /> */}
+      <Route path="/employee" component={(props) => <Employees {...props} />} />
+    </Switch>
+  </div>
+);
 
-    this.state = {
-      employees: [],
-      user: '',
-      password: '',
-    };
-
-    this.getAllEmployees = this.getAllEmployees.bind(this);
-  }
-
-  // to grab data
-  componentDidMount() {
-    this.getAllEmployees();
-  }
-
-  getAllEmployees() {
-    Axios.get('/employees').then(data => {
-      this.setState({ employees: data.data });
-    });
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark row">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <NavBar />
-        </nav>
-        <div className="row justify-content-sm-center">
-          <Login />
-        </div>
-        <div className="row d-none">
-          <Search />
-          <Employees employees={this.state.employees} />
-        </div>
-      </div>
-    );
-  }
-}
+export default App;
