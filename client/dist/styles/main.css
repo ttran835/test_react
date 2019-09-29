@@ -6,10 +6,6 @@
   padding-top: 15px;
   padding-bottom: 15px; }
 
-.row {
-  padding-top: 15px;
-  padding-bottom: 15px; }
-
 body {
   background-color: #343a40; }
 
@@ -17,4 +13,10 @@ body {
   color: #fff; }
 
 .uppercase {
+  text-transform: uppercase; }
+
+.text-center {
+  text-align: center; }
+
+.text-uppercase {
   text-transform: uppercase; }

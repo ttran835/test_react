@@ -9,14 +9,17 @@ const UserLoginsController = {
   },
 
   post: (req, res) => {
-    UserLogins.create({
-      first: user.First,
-      last: user.Last,
-      email: user.Email,
-      username: user.Username,
-      password: user.Password,
-      credential: user.credential,
-    });
+    console.log({ req });
+    console.log('body', req.body);
+    // const user = req;
+    // UserLogins.create({
+    //   first: user.First,
+    //   last: user.Last,
+    //   email: user.Email,
+    //   username: user.Username,
+    //   password: user.Password,
+    //   credential: user.credential,
+    // });
     res.status(201).send('Successfully Created new Login');
   },
 

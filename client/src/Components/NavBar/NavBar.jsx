@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
 
 /* 
   current routes 
@@ -10,10 +11,12 @@ import React from 'react';
 
 const NavBar = props => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark row">
-      <a className="navbar-brand" href="#">
-        Navbar
-    </a>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark row">
+      <Link to="/">
+        <a className="navbar-brand" href="#">
+          Navbar
+        </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -29,9 +32,11 @@ const NavBar = props => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home <span className="sr-only">(current)</span>
-            </a>
+            <Link to="/">
+              <a className="nav-link" href="#">
+                Home <span className="sr-only">(current)</span>
+              </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
@@ -65,9 +70,11 @@ const NavBar = props => {
           </li>
         </ul>
         <span className="navbar-text">
-          <a className="" href="/login">
-            Login
-        </a>
+          <Link to="/login">
+            <a className="" href="/login">
+              Login
+            </a>
+          </Link>
         </span>
       </div>
     </nav>
