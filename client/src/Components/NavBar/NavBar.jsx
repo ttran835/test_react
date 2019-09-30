@@ -1,21 +1,30 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-
+import checkLoggedin from '../../../../Helper/checkUserSession';
 /* 
-  current routes 
+  current routes
   Routes.route('/fakeDataGen').post(UsersController.post);
   Routes.route('/login').get(UsersController.get);
-  Routes.route('/').get(UsersController.get);  
-
+  Routes.route('/').get(UsersController.get);
 */
 
 const NavBar = props => {
+  const logout = (e) => {
+    const { history } = props;
+    localStorage.removeItem('user');
+    history.push('/login');
+    e.preventDefault();
+  };
+  const logOutDiv = (
+    <a onClick={logout} className="" href="#logout">
+      Logout
+    </a>
+  );
+
   return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark row">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark row">
       <Link to="/">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+        <p className="navbar-brand">Navbar</p>
       </Link>
       <button
         className="navbar-toggler"
@@ -24,8 +33,7 @@ const NavBar = props => {
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
 
@@ -33,15 +41,15 @@ const NavBar = props => {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Link to="/">
-              <a className="nav-link" href="#">
+              <p className="nav-link">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </p>
             </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
               Link
-          </a>
+            </a>
           </li>
           <li className="nav-item dropdown">
             <a
@@ -51,30 +59,28 @@ const NavBar = props => {
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded="false"
-            >
+              aria-expanded="false">
               Dropdown
-          </a>
+            </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
                 Action
-            </a>
+              </a>
               <a className="dropdown-item" href="#">
                 Another action
-            </a>
+              </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="#">
                 Something else here
-            </a>
+              </a>
             </div>
           </li>
         </ul>
         <span className="navbar-text">
           <Link to="/login">
-            <a className="" href="/login">
-              Login
-            </a>
+            <p>Login</p>
           </Link>
+          {!checkLoggedin() ? '' : logOutDiv}
         </span>
       </div>
     </nav>

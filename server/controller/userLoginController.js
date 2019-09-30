@@ -5,21 +5,29 @@ const { UserLogins } = require('../../database/tables/userLogins');
 
 const UserLoginsController = {
   get: (req, res) => {
-    res.status(200).send('Hello from login get');
+    const { username, password } = req.query;
+    UserLogins.findOne({
+      where: { username, password },
+    }).then(data => {
+      res.status(200).send(data);
+    }).catch(err => {
+      console.error(err);
+    });
   },
 
   post: (req, res) => {
-    console.log({ req });
-    console.log('body', req.body);
-    // const user = req;
-    // UserLogins.create({
-    //   first: user.First,
-    //   last: user.Last,
-    //   email: user.Email,
-    //   username: user.Username,
-    //   password: user.Password,
-    //   credential: user.credential,
-    // });
+    const {
+      first, last, email, password, credential,
+    } = req.body;
+
+    UserLogins.create({
+      first,
+      last,
+      email,
+      username: email,
+      password,
+      credential,
+    });
     res.status(201).send('Successfully Created new Login');
   },
 

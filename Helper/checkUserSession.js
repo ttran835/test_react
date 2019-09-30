@@ -1,3 +1,3 @@
-const isLoggedIn = user => {};
+const checkLoggedin = () => !!localStorage.getItem('user');
 
-module.exports = isLoggedIn;
+module.exports = checkLoggedin;

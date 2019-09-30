@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar.jsx';
 
 const Homepage = () => (
   <div className="row">

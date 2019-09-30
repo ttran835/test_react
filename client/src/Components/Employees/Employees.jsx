@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Axios from 'axios';
 import Employee from './Employee/Employee.jsx';
 import Search from '../ManageEmployee/Search.jsx';
-
-
 
 export default class Employees extends Component {
   constructor(props) {
@@ -41,6 +40,6 @@ export default class Employees extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

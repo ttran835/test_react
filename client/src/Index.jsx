@@ -1,17 +1,24 @@
 import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React from 'react';
 import { render } from 'react-dom';
 import App from './Components/App.jsx';
+import Login from './Components/Login/Login.jsx';
 // import styles from '../dist/styles/main.css';
 
-
 const renderApp = () => {
-  render(<AppContainer>
-    <Router>
-      <App />
-    </Router>
-  </AppContainer>, document.getElementById('app'));
+  render(
+    <AppContainer>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    </AppContainer>,
+    document.getElementById('app')
+  );
 };
 
 renderApp();
