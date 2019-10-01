@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import checkLoggedin from '../../../../Helper/checkUserSession';
+import checkLoggedin from '../../../../_services/checkUserSession';
 /* 
   current routes
   Routes.route('/fakeDataGen').post(UsersController.post);
@@ -9,16 +9,22 @@ import checkLoggedin from '../../../../Helper/checkUserSession';
 */
 
 const NavBar = props => {
-  const logout = (e) => {
+  const logout = e => {
     const { history } = props;
     localStorage.removeItem('user');
     history.push('/login');
     e.preventDefault();
   };
-  const logOutDiv = (
+  const logoutDiv = (
     <a onClick={logout} className="" href="#logout">
       Logout
     </a>
+  );
+
+  const LoginDiv = (
+    <Link to="/login">
+      <p>Login</p>
+    </Link>
   );
 
   return (
@@ -76,12 +82,7 @@ const NavBar = props => {
             </div>
           </li>
         </ul>
-        <span className="navbar-text">
-          <Link to="/login">
-            <p>Login</p>
-          </Link>
-          {!checkLoggedin() ? '' : logOutDiv}
-        </span>
+        <span className="navbar-text">{!checkLoggedin() ? LoginDiv : logoutDiv}</span>
       </div>
     </nav>
   );

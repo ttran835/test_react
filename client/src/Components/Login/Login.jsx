@@ -25,14 +25,14 @@ export default class Login extends Component {
     const { username, password } = state;
     const { history } = this.props;
     Axios.get('/api/login/user', { params: { username, password } })
-      .then(data => {
-        const info = data.data;
+      .then(user => {
+        const info = user.data;
         if (!info) {
           this.setState({
             correctPw: false,
           });
         } else {
-          localStorage.setItem('user', JSON.stringify(info.username));
+          localStorage.setItem('user', JSON.stringify(info));
           history.push('/employees');
         }
       })

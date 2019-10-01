@@ -2,17 +2,25 @@
 
 require('dotenv').config();
 const { UserLogins } = require('../../database/tables/userLogins');
+const authenicateUser = require('../../_services/serverUser.service');
 
 const UserLoginsController = {
   get: (req, res) => {
     const { username, password } = req.query;
     UserLogins.findOne({
       where: { username, password },
-    }).then(data => {
-      res.status(200).send(data);
-    }).catch(err => {
-      console.error(err);
-    });
+    })
+      .then(data => {
+        const user = data.dataValues;
+        authenicateUser(user, process.env.JSON_TOKEN)
+          .then(user =>
+            user
+              ? res.json(user)
+              : res.status(400).json({ message: 'Username or password is incorrect' })
+          )
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   },
 
   post: (req, res) => {

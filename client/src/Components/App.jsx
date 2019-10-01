@@ -8,7 +8,7 @@ import Homepage from './HomePage/HomePage.jsx';
 import FourOhFour from './FourOhFour/FourOhFour.jsx';
 
 // herlp
-import checkLoggedin from '../../../Helper/checkUserSession';
+import checkLoggedin from '../../../_services/checkUserSession';
 /*
   ToDo:
     Implement Authentication:
