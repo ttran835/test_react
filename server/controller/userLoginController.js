@@ -6,7 +6,11 @@ const authenicateUser = require('../../_services/serverUser.service');
 
 const UserLoginsController = {
   get: (req, res) => {
-    const { username, password } = req.query;
+    res.status(200).send('Hello From Get.');
+  },
+
+  post: (req, res) => {
+    const { username, password } = req.body.params;
     UserLogins.findOne({
       where: { username, password },
     })
@@ -21,22 +25,19 @@ const UserLoginsController = {
           .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-  },
+    // const {
+    //   first, last, email, password, credential,
+    // } = req.body;
 
-  post: (req, res) => {
-    const {
-      first, last, email, password, credential,
-    } = req.body;
-
-    UserLogins.create({
-      first,
-      last,
-      email,
-      username: email,
-      password,
-      credential,
-    });
-    res.status(201).send('Successfully Created new Login');
+    // UserLogins.create({
+    //   first,
+    //   last,
+    //   email,
+    //   username: email,
+    //   password,
+    //   credential,
+    // });
+    // res.status(201).send('Successfully Created new Login');
   },
 
   put: (req, res) => {},

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
+/* Should all of these be handled here */
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -24,17 +26,19 @@ export default class Login extends Component {
   submitChange(e, state) {
     const { username, password } = state;
     const { history } = this.props;
-    Axios.get('/api/login/user', { params: { username, password } })
+    Axios.post('/api/login/user', { params: { username, password } })
       .then(user => {
+        console.log({user});
         const info = user.data;
-        if (!info) {
-          this.setState({
-            correctPw: false,
-          });
-        } else {
-          localStorage.setItem('user', JSON.stringify(info));
-          history.push('/employees');
-        }
+        console.log({info});
+        // if (!info) {
+        //   this.setState({
+        //     correctPw: false,
+        //   });
+        // } else {
+        localStorage.setItem('user', JSON.stringify(info));
+        history.push('/employees');
+        // }
       })
       .catch(err => console.error(err));
     e.preventDefault();

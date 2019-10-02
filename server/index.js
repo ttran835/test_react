@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api', Router);
 
 // JWT Api
-app.use('/', jwt(process.env.JSON_TOKEN));
+app.use(jwt(process.env.JSON_TOKEN));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
