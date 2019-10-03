@@ -6,7 +6,15 @@ const authenicateUser = require('../../_services/serverUser.service');
 
 const UserLoginsController = {
   get: (req, res) => {
-    res.status(200).send('Hello From Get.');
+    const { username } = req.query;
+    UserLogins.findOne({
+      where: { username },
+      attributes: ['username', 'first', 'last', 'credential'],
+    })
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(err => console.log(err));
   },
 
   post: (req, res) => {

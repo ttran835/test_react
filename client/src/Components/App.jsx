@@ -8,7 +8,7 @@ import Homepage from './HomePage/HomePage.jsx';
 import FourOhFour from './FourOhFour/FourOhFour.jsx';
 
 // herlp
-import checkLoggedin from '../../../_services/checkUserSession';
+import checkLoggedin from '../../../_services/checkUserSession.service';
 /*
   ToDo:
     Implement Authentication:
@@ -21,7 +21,6 @@ import checkLoggedin from '../../../_services/checkUserSession';
 
 const App = () => {
   if (!checkLoggedin()) {
-    console.log('working?');
     return <Redirect to="/login" />;
   }
 

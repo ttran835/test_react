@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import setAuthHeader from '../../../../_services/authenticate-header.service.js';
+import handleResponse from '../../../../_Helper/handle-response.js';
 
 /* Should all of these be handled here */
 
@@ -27,18 +29,17 @@ export default class Login extends Component {
     const { username, password } = state;
     const { history } = this.props;
     Axios.post('/api/login/user', { params: { username, password } })
-      .then(user => {
-        console.log({user});
-        const info = user.data;
-        console.log({info});
-        // if (!info) {
-        //   this.setState({
-        //     correctPw: false,
-        //   });
-        // } else {
-        localStorage.setItem('user', JSON.stringify(info));
-        history.push('/employees');
-        // }
+      .then(response => {
+        const user = response.data;
+        Axios.get('/api/token', {
+          headers: setAuthHeader(user),
+          params: { username },
+        })
+          .then(handleResponse)
+          .then(user => {
+            localStorage.setItem('user', JSON.stringify(user));
+            history.push('/employees');
+          });
       })
       .catch(err => console.error(err));
     e.preventDefault();

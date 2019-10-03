@@ -2,7 +2,7 @@
 
 const setAuthHeader = user => {
   if (user && user.token) {
-    return { Authorization: `Bear ${user.token}` };
+    return { Authorization: `Bearer ${user.token}` };
   }
   return {};
 };

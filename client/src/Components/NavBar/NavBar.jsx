@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import checkLoggedin from '../../../../_services/checkUserSession';
+import checkLoggedin from '../../../../_services/checkUserSession.service';
 /* 
   current routes
   Routes.route('/fakeDataGen').post(UsersController.post);

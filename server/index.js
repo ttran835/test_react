@@ -10,6 +10,8 @@ const path = require('path');
 const db = require('../database/index');
 const errorHandler = require('../_Helper/userLoginErrorHandler');
 const jwt = require('../_Helper/jwt');
+const expressJwt = require('express-jwt');
+const checkToken = require('../_Helper/verifyToken');
 //  models
 const Router = require('./routes/Routes');
 
@@ -30,11 +32,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(errorHandler);
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+// app.get('/api', expressJwt({ secret: process.env.JSON_TOKEN }), (req, res) => {
+//   console.log(req);
+//   if (!req.user.admin) return res.sendStatus(401);
+//   res.sendStatus(200);
+// });
 app.use('/api', Router);
-
-// JWT Api
-app.use(jwt(process.env.JSON_TOKEN));
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
