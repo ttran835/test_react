@@ -5,6 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import App from './Components/App.jsx';
 import Login from './Components/Login/Login.jsx';
+import PwReset from './Components/PwReset/PwReset.jsx';
 // import styles from '../dist/styles/main.css';
 
 const renderApp = () => {
@@ -13,6 +14,7 @@ const renderApp = () => {
       <Router>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/passwordReset" component={PwReset} />;
           <Route path="/" component={App} />
         </Switch>
       </Router>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import PwReset from '../PwReset/PwReset.jsx';
 import setAuthHeader from '../../../../_services/authenticate-header.service.js';
 import handleResponse from '../../../../_Helper/handle-response.js';
 
@@ -87,6 +88,9 @@ export default class Login extends Component {
                 className="btn btn-primary">
                 Submit
               </button>
+              <Link to="/passwordReset">
+                <button className="btn btn-primary">Reset Password</button>
+              </Link>
             </form>
           </div>
         </div>

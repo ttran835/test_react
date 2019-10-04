@@ -20,3 +20,9 @@ body {
 
 .text-uppercase {
   text-transform: uppercase; }
+
+.txt-upper-case {
+  text-transform: uppercase; }
+
+.header-1-font-size {
+  font-size: 1.5rem; }

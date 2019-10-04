@@ -20,18 +20,18 @@ import checkLoggedin from '../../../_services/checkUserSession.service';
 */
 
 const App = () => {
-  if (!checkLoggedin()) {
-    return <Redirect to="/login" />;
-  }
+  const application = (
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+      <Route path="/employees" component={Employees} />;
+      <Route component={FourOhFour} />
+    </Switch>
+  );
 
   return (
     <div className="container">
       <Route path="/" component={NavBar} />
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/employees" component={Employees} />;
-        <Route component={FourOhFour} />
-      </Switch>
+      {!checkLoggedin() ? <Redirect to="/login" /> : application}
     </div>
   );
 };
