@@ -9,6 +9,7 @@ export default class PwReset extends Component {
     this.state = {
       email: '',
       showError: false,
+      showNullError: false,
       messageFromServer: '',
     };
 
@@ -24,9 +25,10 @@ export default class PwReset extends Component {
     });
   }
 
-  newState(showError, msg) {
+  newState(showError, showNullError, msg) {
     this.setState({
       showError,
+      showNullError,
       messageFromServer: msg,
     });
   }
@@ -39,10 +41,10 @@ export default class PwReset extends Component {
     if (email !== '') {
       Axios.post('/api/forgot-password')
         .then(res => {
-          if (res.data === 'No information Found!') {
-            this.newState(true, '');
+          if (res.data === 'No information found!') {
+            this.newState(true, false, '');
           } else if (res.data === 'Recovery email already sent.') {
-            this.newState(false, res.data);
+            this.newState(false, false, res.data);
           }
           if (showError) {
             console.log({ showError });
@@ -50,12 +52,13 @@ export default class PwReset extends Component {
           }
         })
         .catch(err => console.log(err));
+    } else {
+      this.newState(false, true, '');
     }
-    this.newState(false, '');
   }
 
   render() {
-    const { email, messageFromServer, showError } = this.state;
+    const { email, messageFromServer, showNullError, showError } = this.state;
     return (
       <div className="container text-color">
         <div className="row justify-content-center">
@@ -66,7 +69,7 @@ export default class PwReset extends Component {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-6">
+          <div className="col-4">
             <form>
               <div className="form-group">
                 <label htmlFor="email">EMAIL</label>
@@ -88,7 +91,12 @@ export default class PwReset extends Component {
             </form>
             {showError && (
               <div>
-                <p>Email is recognized. Please try again</p>
+                <p>Email is not recognized. Please try again</p>
+              </div>
+            )}
+            {showNullError && (
+              <div>
+                <p>Please enter your email.</p>
               </div>
             )}
             {messageFromServer === 'Recovery email sent' && (

@@ -33,19 +33,7 @@ const UserLoginsController = {
           .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-    // const {
-    //   first, last, email, password, credential,
-    // } = req.body;
-
-    // UserLogins.create({
-    //   first,
-    //   last,
-    //   email,
-    //   username: email,
-    //   password,
-    //   credential,
-    // });
-    // res.status(201).send('Successfully Created new Login');
+ 
   },
 
   put: (req, res) => {},

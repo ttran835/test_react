@@ -16,6 +16,8 @@ const UserLogins = db.define(
     username: { type: Sequelize.STRING },
     password: { type: Sequelize.STRING },
     credential: { type: Sequelize.INTEGER },
+    resetPasswordToken: { type: Sequelize.STRING(1234) },
+    resetPasswordExpires: { type: Sequelize.DATE },
   },
   {
     timeStamp: true,

@@ -24,4 +24,3 @@ Users.sync()
   .catch(err => console.error(err));
 
 module.exports = { Users };
-
