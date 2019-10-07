@@ -30,19 +30,19 @@ export default class Login extends Component {
     const { username, password } = state;
     const { history } = this.props;
     Axios.post('/api/login/user', { params: { username, password } })
-      .then(response => {
+      .then((response) => {
         const user = response.data;
         Axios.get('/api/token', {
           headers: setAuthHeader(user),
           params: { username },
         })
           .then(handleResponse)
-          .then(user => {
-            localStorage.setItem('user', JSON.stringify(user));
+          .then((data) => {
+            localStorage.setItem('user', JSON.stringify(data));
             history.push('/employees');
           });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
     e.preventDefault();
   }
 
@@ -83,7 +83,7 @@ export default class Login extends Component {
                 />
               </div>
               <button
-                onClick={e => this.submitChange(e, this.state)}
+                onClick={(e) => this.submitChange(e, this.state)}
                 type="submit"
                 className="btn btn-primary">
                 Submit

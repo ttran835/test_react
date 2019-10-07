@@ -3,7 +3,7 @@ const { UsersController } = require('../controller/usersController');
 const { UserLoginsController } = require('../controller/userLoginController');
 const { getToken } = require('../controller/getToken');
 const { forgotPassword } = require('../controller/forgotPassword');
-const {createUser} = require('../controller/createUser');
+const { createUser } = require('../controller/createUser');
 const checkToken = require('../../_Helper/verifyToken');
 
 Routes.route('/employees').get(UsersController.get);

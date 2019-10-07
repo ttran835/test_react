@@ -34,24 +34,22 @@ export default class PwReset extends Component {
   }
 
   sendPasswordResetEmail(e) {
-    console.log('triggered');
     e.preventDefault();
     const { history } = this.props;
     const { email, showError } = this.state;
     if (email !== '') {
       Axios.post('/api/forgot-password')
-        .then(res => {
+        .then((res) => {
           if (res.data === 'No information found!') {
             this.newState(true, false, '');
           } else if (res.data === 'Recovery email already sent.') {
             this.newState(false, false, res.data);
           }
           if (showError) {
-            console.log({ showError });
             history.push('/login');
           }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } else {
       this.newState(false, true, '');
     }

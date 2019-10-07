@@ -6,17 +6,13 @@ const nodemailer = require('nodemailer');
 const { UserLogins } = require('../../database/tables/userLogins');
 
 const forgotPassword = {
-  put: (req, res) => {
-    res.status(200).send('hello from forgotPassword');
-  },
-
   post: (req, res) => {
     const { email } = req.body;
-    if (email === '') res.json('Email required');
+    if (email === '') return res.json('Email required');
 
     UserLogins.findOne({
       where: { email },
-    }).then(data => {
+    }).then((data) => {
       if (data === null) return res.status(400).json('No information found!');
       const token = crypto.randomBytes(20).toString('hex');
       console.log(token);
@@ -26,9 +22,9 @@ const forgotPassword = {
             resetPasswordToken: token,
             resetPasswordExpires: Date.now() + 180000,
           },
-          { returning: true }
+          { returning: true },
         )
-        .then(response => {
+        .then((response) => {
           if (response === null) return res.status(400).json('No Data');
 
           const transporter = nodemailer.createTransport({
@@ -63,14 +59,15 @@ const forgotPassword = {
   },
 
   put: (req, res) => {
-    const { username, password, token } = req.body;
-
+    const { email, password, resetPasswordToken } = req.body;
+    if (resetPasswordToken === undefined) return res.json('Please enter Token.');
     UserLogins.findOne({
-      where: { username },
-    }).then(user => {
+      where: { email, resetPasswordToken },
+    }).then((user) => {
       /* Check for token info */
-      if (user !== null) {
-        console.log('Found');
+      if (resetPasswordToken === null) {
+        res.json('Unknown process.');
+      } else if (user !== null) {
         user
           .update({
             password,
@@ -79,7 +76,9 @@ const forgotPassword = {
           })
           .then(() => res.status(200).send({ message: 'password updated' }));
       } else {
-        res.status(404).json('Cannot update information.');
+        return res
+          .status(404)
+          .json('Cannot process information. Please make sure your reset token is correct.');
       }
     });
   },

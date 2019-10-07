@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 /* component */
 import Employees from './Employees/Employees.jsx';
 import NavBar from './NavBar/NavBar.jsx';
