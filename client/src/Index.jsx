@@ -15,13 +15,13 @@ const renderApp = () => {
       <Router>
         <Switch>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/passwordReset" component={PwReset} />;
-          <Route exact path="/reset" component={ResetPage} />
+          <Route exact path="/passwordReset" component={PwReset} />
+          <Route path="/reset/:resetPasswordToken" component={ResetPage} />
           <Route path="/" component={App} />
         </Switch>
       </Router>
     </AppContainer>,
-    document.getElementById('app')
+    document.getElementById('app'),
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 export default class ResetPage extends Component {
@@ -8,7 +9,7 @@ export default class ResetPage extends Component {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
       confirmPassword: '',
       resetPasswordToken: '',
@@ -20,31 +21,35 @@ export default class ResetPage extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    const { resetPasswordToken } = this.props.match.params;
+    this.setState({
+      resetPasswordToken,
+    });
+  }
+
   updatePassword(e) {
     const { history } = this.props;
-    const { username, password, resetPasswordToken } = this.state;
+    const { email, password, resetPasswordToken } = this.state;
     e.preventDefault();
     // Statements to handle login info
-    Axios.post('/update-password', { params: username, password, resetPasswordToken })
-      .then((data) => console.log('something'))
+    Axios.put('/api/update-password', { params: { email, password, resetPasswordToken } })
+      .then((res) => {
+        const message = res.data;
+        console.log(message);
+      })
       .catch((err) => console.error(err));
   }
 
-  // handleError () {
-  //   const
-  // }
   handleChange(e) {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     this.setState({
-      [name]: value,
+      [id]: value,
     });
   }
 
   render() {
-    const { username, password, resetToken, update } = this.state;
-    const style = {
-      margin: 15,
-    };
+    const { email, password, resetToken, update } = this.state;
 
     return (
       <div className="container text-center">
@@ -57,26 +62,28 @@ export default class ResetPage extends Component {
           <div className="col-6">
             <form>
               <TextField
-                id="username"
-                label="username"
-                placeholder="username"
+                className="text-color"
+                id="email"
+                label="Email"
+                placeholder="email"
                 onChange={this.handleChange}
               />
               <TextField
+                className="text-color"
                 id="password"
                 label="Password"
                 placeholder="password"
                 onChange={this.handleChange}
               />
               <TextField
-                id="resetPasswordToken"
-                label="resetPasswordToken"
-                placeholder="resetPasswordToken"
+                className="text-color"
+                id="confirmPassword"
+                label="Confirm Password"
+                placeholder="Confirm password"
                 onChange={this.handleChange}
-                fullWidth
               />
               <br />
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={this.updatePassword}>
                 Submit
               </Button>
             </form>

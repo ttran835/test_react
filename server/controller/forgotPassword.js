@@ -6,8 +6,14 @@ const nodemailer = require('nodemailer');
 const { UserLogins } = require('../../database/tables/userLogins');
 
 const forgotPassword = {
+  get: (req, res) => {
+    console.log(req);
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  },
+
   post: (req, res) => {
-    const { email } = req.body;
+    const { email } = req.body.params;
+    console.log(email);
     if (email === '') return res.json('Email required');
 
     UserLogins.findOne({
@@ -42,7 +48,7 @@ const forgotPassword = {
             text:
               `You are receiving this email to reset the password. \n\n` +
               `Please click the link or paste it onto the url to go to password reset \n\n` +
-              `http://${process.env.HOST}:${process.env.SERVER_PORT}/reset \n\n` +
+              `http://${process.env.HOST}:${process.env.SERVER_PORT}/reset/${token} \n\n` +
               `Please use this temporary password to reset your password: \n\n` +
               `${token} \n\n` +
               `If you did not request this, please contact us.`,
@@ -59,14 +65,17 @@ const forgotPassword = {
   },
 
   put: (req, res) => {
-    const { email, password, resetPasswordToken } = req.body;
-    if (resetPasswordToken === undefined) return res.json('Please enter Token.');
+    const { email, password, resetPasswordToken } = req.body.params;
+    console.log(req.body.params);
+    if (resetPasswordToken === undefined || email === '' || password === '')
+      return res.json('Fields cannot be empty');
+
     UserLogins.findOne({
       where: { email, resetPasswordToken },
     }).then((user) => {
       /* Check for token info */
       if (resetPasswordToken === null) {
-        res.json('Unknown process.');
+        res.json('Token already been used. Please request another reset token.');
       } else if (user !== null) {
         user
           .update({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, Route } from 'react-router-dom';
+import ResetPage from './ResetPage/ResetPage.jsx';
 export default class PwReset extends Component {
   constructor(props) {
     super(props);
@@ -38,14 +38,14 @@ export default class PwReset extends Component {
     const { history } = this.props;
     const { email, showError } = this.state;
     if (email !== '') {
-      Axios.post('/api/forgot-password')
+      Axios.post('/api/forgot-password', { params: { email } })
         .then((res) => {
           if (res.data === 'No information found!') {
             this.newState(true, false, '');
           } else if (res.data === 'Recovery email already sent.') {
             this.newState(false, false, res.data);
           }
-          if (showError) {
+          if (!showError) {
             history.push('/login');
           }
         })
