@@ -5,7 +5,7 @@ import PwReset from '../PwReset/PwReset.jsx';
 import setAuthHeader from '../../../../_services/authenticate-header.service.js';
 import handleResponse from '../../../../_Helper/handle-response.js';
 
-/* Should all of these be handled here */
+/* Should all of these be handled here Write logic for showing messages. */
 
 export default class Login extends Component {
   constructor(props) {

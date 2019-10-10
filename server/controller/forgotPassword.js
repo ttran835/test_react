@@ -74,9 +74,7 @@ const forgotPassword = {
       where: { email, resetPasswordToken },
     }).then((user) => {
       /* Check for token info */
-      if (resetPasswordToken === null) {
-        res.json('Token already been used. Please request another reset token.');
-      } else if (user !== null) {
+      if (user !== null) {
         user
           .update({
             password,
@@ -86,8 +84,7 @@ const forgotPassword = {
           .then(() => res.status(200).send({ message: 'password updated' }));
       } else {
         return res
-          .status(404)
-          .json('Cannot process information. Please make sure your reset token is correct.');
+          .send('Cannot process information. Please make sure your token or user is correct.');
       }
     });
   },

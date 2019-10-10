@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import PasswordField from './Fields/PasswordField.jsx';
 
 export default class ResetPage extends Component {
   constructor(props) {
@@ -15,6 +16,8 @@ export default class ResetPage extends Component {
       resetPasswordToken: '',
       update: false,
       error: false,
+      emptyFields: false,
+      samePassword: true,
     };
 
     this.updatePassword = this.updatePassword.bind(this);
@@ -30,15 +33,21 @@ export default class ResetPage extends Component {
 
   updatePassword(e) {
     const { history } = this.props;
-    const { email, password, resetPasswordToken } = this.state;
+    const { email, password, resetPasswordToken, samePassword } = this.state;
     e.preventDefault();
     // Statements to handle login info
-    Axios.put('/api/update-password', { params: { email, password, resetPasswordToken } })
-      .then((res) => {
-        const message = res.data;
-        console.log(message);
-      })
-      .catch((err) => console.error(err));
+    if (this.passWordCheck()) {
+      Axios.put('/api/update-password', { params: { email, password, resetPasswordToken } })
+        .then((res) => {
+          const message = res.data;
+          console.log(message);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      this.setState({
+        samePassword: false,
+      });
+    }
   }
 
   handleChange(e) {
@@ -48,9 +57,13 @@ export default class ResetPage extends Component {
     });
   }
 
-  render() {
-    const { email, password, resetToken, update } = this.state;
+  passWordCheck() {
+    const { password, confirmPassword } = this.state;
+    return password === confirmPassword;
+  }
 
+  render() {
+    const { email, password, confirmPassword, resetToken, update, samePassword } = this.state;
     return (
       <div className="container text-center">
         <div className="row justify-content-sm-center">
@@ -68,12 +81,10 @@ export default class ResetPage extends Component {
                 placeholder="email"
                 onChange={this.handleChange}
               />
-              <TextField
-                className="text-color"
-                id="password"
-                label="Password"
-                placeholder="password"
-                onChange={this.handleChange}
+              <PasswordField
+                password={password}
+                confirmPassword={confirmPassword}
+                handleChange={this.handleChange}
               />
               <TextField
                 className="text-color"
