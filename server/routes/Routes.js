@@ -15,7 +15,7 @@ Routes.route('/login/user').post(UserLoginsController.post);
 Routes.route('/forgot-password').post(forgotPassword.post);
 Routes.route('/update-password').put(forgotPassword.put);
 
-Routes.route('/new/user').post(createUser.post);
+Routes.route('/new-user').post(createUser.post);
 
 Routes.route('/').get(getToken.get);
 module.exports = Routes;

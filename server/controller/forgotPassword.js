@@ -83,8 +83,9 @@ const forgotPassword = {
           })
           .then(() => res.status(200).send({ message: 'password updated' }));
       } else {
-        return res
-          .send('Cannot process information. Please make sure your token or user is correct.');
+        return res.send(
+          'Cannot process information. Please make sure your token or user is correct.',
+        );
       }
     });
   },

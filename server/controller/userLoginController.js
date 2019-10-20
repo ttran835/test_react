@@ -11,10 +11,10 @@ const UserLoginsController = {
       where: { username },
       attributes: ['username', 'first', 'last', 'credential'],
     })
-      .then(user => {
+      .then((user) => {
         res.status(200).send(user);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   },
 
   post: (req, res) => {
@@ -22,18 +22,17 @@ const UserLoginsController = {
     UserLogins.findOne({
       where: { username, password },
     })
-      .then(data => {
+      .then((data) => {
         const user = data.dataValues;
         authenicateUser(user, process.env.JSON_TOKEN)
-          .then(user =>
+          .then((user) =>
             user
               ? res.json(user)
-              : res.status(400).json({ message: 'Username or password is incorrect' })
+              : res.status(400).json({ message: 'Username or password is incorrect' }),
           )
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       })
-      .catch(err => console.log(err));
- 
+      .catch((err) => console.log(err));
   },
 
   put: (req, res) => {},
