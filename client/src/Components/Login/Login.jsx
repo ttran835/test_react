@@ -91,8 +91,8 @@ export default class Login extends Component {
               <Link to="/passwordReset">
                 <button className="btn btn-primary">Reset Password</button>
               </Link>
-              <Link to="/passwordReset">
-                <button className="btn btn-primary">Reset Password</button>
+              <Link to="/new_user">
+                <button className="btn btn-primary">Create Account</button>
               </Link>
             </form>
           </div>

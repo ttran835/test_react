@@ -73,13 +73,6 @@ class PasswordFieldWithAdornments extends Component {
           }
         />
       </FormControl>
-      // <TextField
-      //   className={`text-color ${margin}`}
-      //   id="password"
-      //   label="Password"
-      //   placeholder="password"
-      //   onChange={handleChange}
-      // />
     );
   }
 }
