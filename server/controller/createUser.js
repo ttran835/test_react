@@ -8,7 +8,7 @@ const createUser = {
     }
 
     const {
-      first, last, email, password, credential,
+      first, last, email, password,
     } = req.body;
 
     UserLogins.create({
@@ -17,7 +17,6 @@ const createUser = {
       email,
       username: email,
       password,
-      credential,
     });
     res.status(201).send('Successfully Created new Login');
   },

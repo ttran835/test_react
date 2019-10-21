@@ -52,13 +52,16 @@ class PasswordFieldWithAdornments extends Component {
   }
 
   render() {
-    const { handleChange, classes } = this.props;
+    const { handleChange, classes, confirmPasswordField } = this.props;
     const { showPassword } = this.state;
+
     return (
-      <FormControl className={clsx(classes.margin, classes.textField)}>
-        <InputLabel htmlFor="adornment-password">Password</InputLabel>
+      <FormControl className={clsx(classes.textField)}>
+        <InputLabel htmlFor="adornment-password">
+          {!confirmPasswordField ? 'Password' : 'Confirm Password'}
+        </InputLabel>
         <Input
-          id="password"
+          id={!confirmPasswordField ? 'password' : 'confirmPassword'}
           type={showPassword ? 'text' : 'password'}
           onChange={handleChange}
           endAdornment={

@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import PasswordField from './Fields/PasswordField.jsx';
+import PasswordField from '../../Fields/PasswordField.jsx';
 
 export default class ResetPage extends Component {
   constructor(props) {
@@ -81,11 +81,7 @@ export default class ResetPage extends Component {
                 placeholder="email"
                 onChange={this.handleChange}
               />
-              <PasswordField
-                password={password}
-                confirmPassword={confirmPassword}
-                handleChange={this.handleChange}
-              />
+              <PasswordField password={password} handleChange={this.handleChange} />
               <TextField
                 className="text-color"
                 id="confirmPassword"
