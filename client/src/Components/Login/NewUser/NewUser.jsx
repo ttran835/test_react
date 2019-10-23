@@ -52,6 +52,7 @@ class NewUser extends Component {
     const { first, last, email, password } = this.state;
     const { history } = this.props;
     if (this.checkEmailAndPassword(this.state)) {
+      console.log('hit');
       Axios.post('/api/new-user', { params: { first, last, email, password } })
         .then((response) => {
           const user = response.data;
@@ -83,7 +84,7 @@ class NewUser extends Component {
               <AccountCircle />
             </Grid>
             <Grid item>
-              <TextField onChange={this.handleChange} label="Email" />
+              <TextField id="email" onChange={this.handleChange} label="Email" />
             </Grid>
             <Grid item>
               <PasswordField handleChange={this.handleChange} />
@@ -96,7 +97,7 @@ class NewUser extends Component {
               <AccountCircle />
             </Grid>
             <Grid item>
-              <TextField onChange={this.handleChange} label="Confirm Email" />
+              <TextField id="confirmEmail" onChange={this.handleChange} label="Confirm Email" />
             </Grid>
             <Grid item>
               <PasswordField
@@ -112,10 +113,10 @@ class NewUser extends Component {
               <ContactsIcon />
             </Grid>
             <Grid item>
-              <TextField onChange={this.handleChange} label="First Name" />
+              <TextField id="first" onChange={this.handleChange} label="First Name" />
             </Grid>
             <Grid item>
-              <TextField onChange={this.handleChange} label="Last Name" />
+              <TextField id="last" onChange={this.handleChange} label="Last Name" />
             </Grid>
           </Grid>
         </div>
